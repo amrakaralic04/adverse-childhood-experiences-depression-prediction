@@ -1370,3 +1370,87 @@ def boxplot_po_kategoriji(df, numericka, kategorijska, datoteka):
     plt.show()
 
     return statistika.round(2)
+
+
+def korelacijska_analiza(df):
+    import matplotlib.pyplot as plt
+    import numpy as np
+
+    varijable = [
+        "_AGE80",
+        "SLEPTIM1",
+        "MENTHLTH",
+        "PHYSHLTH",
+        "WTKG3",
+        "_BMI5"
+    ]
+
+    podaci = df[varijable].copy()
+
+    matrica = podaci.corr(method="spearman")
+
+    parovi = []
+
+    for i in range(len(varijable)):
+        for j in range(i + 1, len(varijable)):
+            koeficijent = matrica.iloc[i, j]
+
+            if pd.notna(koeficijent):
+                parovi.append({
+                    "Varijabla 1": varijable[i],
+                    "Varijabla 2": varijable[j],
+                    "Korelacija": round(koeficijent, 3),
+                    "Apsolutna korelacija": abs(koeficijent)
+                })
+
+    najjaci_parovi = pd.DataFrame(parovi)
+
+    najjaci_parovi = (
+        najjaci_parovi
+        .sort_values("Apsolutna korelacija", ascending=False)
+        .head(3)
+        .drop(columns="Apsolutna korelacija")
+    )
+
+    fig, ax = plt.subplots(figsize=(9, 7))
+
+    prikaz = ax.imshow(
+        matrica,
+        cmap="coolwarm",
+        vmin=-1,
+        vmax=1
+    )
+
+    ax.set_xticks(range(len(varijable)))
+    ax.set_yticks(range(len(varijable)))
+
+    ax.set_xticklabels(varijable, rotation=45, ha="right")
+    ax.set_yticklabels(varijable)
+
+    for i in range(len(varijable)):
+        for j in range(len(varijable)):
+            ax.text(
+                j, i,
+                f"{matrica.iloc[i, j]:.2f}",
+                ha="center",
+                va="center",
+                color="black"
+            )
+
+    ax.set_title("Spearmanova korelacijska matrica")
+
+    fig.colorbar(
+        prikaz,
+        ax=ax,
+        label="Koeficijent korelacije"
+    )
+
+    plt.tight_layout()
+    plt.savefig(
+        "korelacijska_heatmapa.png",
+        dpi=300,
+        bbox_inches="tight"
+    )
+    plt.show()
+
+    return matrica.round(3), najjaci_parovi
