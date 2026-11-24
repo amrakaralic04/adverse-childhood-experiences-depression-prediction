@@ -1539,7 +1539,7 @@ def pregled_preostalih_varijabli(df):
     return pd.DataFrame(rezultati)
 
 
-def priprema_preostalih_numerickih(df):
+def priprema_dodatnih_12_varijabli(df):
     varijable = [
         "WEIGHT2", "HEIGHT3", "HTIN4",
         "DROCDY3_", "_DRNKWK1",
