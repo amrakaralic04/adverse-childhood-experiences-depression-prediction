@@ -1,0 +1,5 @@
+
+LLCP2020.XPT
+__pycache__/
+*.pyc
+.ipynb_checkpoints/

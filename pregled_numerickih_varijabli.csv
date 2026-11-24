@@ -1,0 +1,45 @@
+﻿Varijabla,Opis (Codebook),Mjerna ljestvica,Broj popunjenih,Broj jedinstvenih vrijednosti,Minimum,Maksimum
+NUMADULT,Number of Adults in Household,Kvantitativne – diskretne,124742,15,1.0,18.0
+NUMMEN,Number of Adult men in Household,Kvantitativne – diskretne,110422,10,5.397605346934028e-79,18.0
+NUMWOMEN,Number of Adult women in Household,Kvantitativne – diskretne,110422,14,5.397605346934028e-79,18.0
+HHADULT,Number of Adults in Household,Kvantitativne – diskretne,277205,33,1.0,99.0
+PHYSHLTH,Number of Days Physical Health Not Good,Kvantitativne – diskretne,401953,33,1.0,99.0
+MENTHLTH,Number of Days Mental Health Not Good,Kvantitativne – diskretne,401953,33,1.0,99.0
+POORHLTH,Poor Physical or Mental Health,Kvantitativne – diskretne,201615,33,1.0,99.0
+SLEPTIM1,How Much Time Do You Sleep,Kvantitativne – diskretne,401955,26,1.0,99.0
+DIABAGE3,Age When Told Had Diabetes,Kvantitativne – diskretne,52094,96,1.0,99.0
+NUMPHON3,Residential Phones,Kvantitativne – diskretne,30250,9,1.0,9.0
+CHILDREN,Number of Children in Household,Kvantitativne – diskretne,397191,27,1.0,99.0
+WEIGHT2,Reported Weight in Pounds,Kvantitativne – kontinuirane,392106,574,50.0,9999.0
+HEIGHT3,Reported Height in Feet and Inches,Kvantitativne – kontinuirane,391134,147,204.0,9999.0
+ALCDAY5,Days in past 30 had alcoholic beverage,Kvantitativne – diskretne,381031,40,101.0,999.0
+AVEDRNK3,Avg alcoholic drinks per day in past 30,Kvantitativne – diskretne,190859,56,1.0,99.0
+DRNK3GE5,Binge Drinking,Kvantitativne – diskretne,190332,44,1.0,99.0
+MAXDRNKS,Most drinks on single occasion past 30 days,Kvantitativne – diskretne,189846,63,1.0,99.0
+FALL12MN,Had Fall Past Twelve Months,Kvantitativne – diskretne,264150,58,1.0,99.0
+FALLINJ4,Injured in Fall,Kvantitativne – diskretne,68636,43,1.0,99.0
+BLDSUGAR,How Often Check Blood for Glucose,Kvantitativne – diskretne,13108,72,101.0,999.0
+FEETCHK3,How Often Check Feet for Sores or Irritations,Kvantitativne – diskretne,13108,67,101.0,999.0
+DOCTDIAB,Times Seen Health Professional for Diabetes,Kvantitativne – diskretne,13108,40,1.0,99.0
+CHKHEMO3,Times Checked for Glycosylated Hemoglobin,Kvantitativne – diskretne,13108,37,1.0,99.0
+FEETCHK,Times Feet Check for Sores/irritations,Kvantitativne – diskretne,13033,44,1.0,99.0
+WORKCFS,How many hours a week are you been able to work,Kvantitativne – diskretne,0,0,,
+MARIJAN1,"During the past 30 days, on how many days did you use marijuana or hashish?",Kvantitativne – diskretne,130619,33,1.0,99.0
+LCSFIRST,How old when you first started smoking?,Kvantitativne – diskretne,14044,65,1.0,999.0
+LCSLAST,How old when you last smoked?,Kvantitativne – diskretne,13626,92,1.0,999.0
+LCSNUMCG,"On average, how many cigarettes do you smoke each day?",Kvantitativne – diskretne,13607,56,1.0,999.0
+CNCRAGE,Age Told Had Cancer,Kvantitativne – diskretne,22693,99,1.0,99.0
+_STRWT,Stratum weight,Kvantitativne – kontinuirane,401958,1601,0.3380386619984245,1540.1157143958671
+_RAWRAKE,Raw weighting factor used in raking,Kvantitativne – kontinuirane,401958,12,0.3333333333333333,5.0
+_WT2RAKE,Design weight use in raking,Kvantitativne – kontinuirane,401958,6255,0.16901933099921224,5338.969305898491
+_CLLCPWT,Final child weight: Land-line and Cell-Phone data,Kvantitativne – kontinuirane,54954,21130,0.7655604242676811,102357.72579574394
+_DUALCOR,Dual Phone Use Correction Factor,Kvantitativne – kontinuirane,177721,106,0.036949354630108906,0.9630506453748985
+_LLCPWT2,Truncated design weight used in adult combined land line and cell phone raking,Kvantitativne – kontinuirane,401958,14823,3.68537543218595,20022.819126284907
+_LLCPWT,Final weight: Land-line and cell-phone data,Kvantitativne – kontinuirane,401958,252225,0.9582775487725108,83193.32209336097
+_AGE80,Imputed Age value collapsed above 80,Kvantitativne – diskretne,401958,63,18.0,80.0
+HTIN4,Computed Height in Inches,Kvantitativne – kontinuirane,378150,55,36.0,95.0
+HTM4,Computed Height in Meters,Kvantitativne – kontinuirane,380227,110,91.0,241.0
+WTKG3,Computed Weight in Kilograms,Kvantitativne – kontinuirane,367010,553,2268.0,29030.0
+_BMI5,Computed body mass index,Kvantitativne – kontinuirane,360601,3769,1202.0,9843.0
+DROCDY3_,Computed drink-occasions-per-day,Kvantitativne – kontinuirane,401958,36,5.397605346934028e-79,900.0
+_DRNKWK1,Computed number of drinks of alcohol beverages per week,Kvantitativne – kontinuirane,401958,276,5.397605346934028e-79,99900.0

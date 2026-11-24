@@ -1,0 +1,4 @@
+﻿Varijabla,N,Minimum,Maksimum,Sredina,Standardna devijacija,CV (%),Medijan,Q1,Q3,IQR,Asimetričnost,Zaobljenost,Skraćena sredina (5%)
+POORHLTH,196348,0.0,30.0,5.09,9.0,176.72,0.0,0.0,5.0,5.0,1.87,2.21,3.99
+FALL12MN,260678,0.0,76.0,0.79,3.36,427.15,0.0,0.0,1.0,1.0,14.41,274.13,0.36
+FALLINJ4,68098,0.0,76.0,0.73,2.74,377.64,0.0,0.0,1.0,1.0,18.18,441.09,0.42
