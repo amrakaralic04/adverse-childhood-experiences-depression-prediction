@@ -1454,3 +1454,59 @@ def korelacijska_analiza(df):
     plt.show()
 
     return matrica.round(3), najjaci_parovi
+
+
+def prijedlozi_nedostajucih(df, numericki_podaci):
+    varijable = {
+        "ACEDEPRS": pd.to_numeric(
+            df["ACEDEPRS"], errors="coerce"
+        ).where(lambda x: x.isin([1, 2])),
+        "ADDEPEV3": pd.to_numeric(
+            df["ADDEPEV3"], errors="coerce"
+        ).where(lambda x: x.isin([1, 2])),
+        "MENTHLTH": numericki_podaci["MENTHLTH"],
+        "WORKCFS": df["WORKCFS"]
+    }
+
+    prijedlozi = {
+        "ACEDEPRS": "Ne nadomještati automatski; koristiti valjane odgovore",
+        "ADDEPEV3": "Isključiti nevažeće odgovore iz poređenja",
+        "MENTHLTH": "Razmotriti medijan umjesto aritmetičke sredine",
+        "WORKCFS": "Predložiti isključivanje potpuno prazne varijable"
+    }
+
+    rezultati = []
+
+    for naziv, podaci in varijable.items():
+        broj = int(podaci.isna().sum())
+
+        rezultati.append({
+            "Varijabla": naziv,
+            "Broj problematičnih zapisa": broj,
+            "Postotak (%)": round(
+                broj / len(df) * 100, 2
+            ),
+            "Prijedlog": prijedlozi[naziv]
+        })
+
+    pregled = pd.DataFrame(rezultati)
+
+    bmi = pd.DataFrame({
+        "Spol": pd.to_numeric(
+            df["SEXVAR"], errors="coerce"
+        ),
+        "BMI": numericki_podaci["_BMI5"]
+    })
+
+    bmi = bmi[bmi["Spol"].isin([1, 2])]
+
+    medijani = bmi.groupby("Spol")["BMI"].agg(
+        ["count", "median"]
+    )
+
+    medijani.index = medijani.index.map({
+        1: "Muškarci",
+        2: "Žene"
+    })
+
+    return pregled, medijani, numericki_podaci["_BMI5"].median()
