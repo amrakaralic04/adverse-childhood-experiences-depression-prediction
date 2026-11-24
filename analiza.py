@@ -1510,3 +1510,96 @@ def prijedlozi_nedostajucih(df, numericki_podaci):
     })
 
     return pregled, medijani, numericki_podaci["_BMI5"].median()
+
+
+def pregled_preostalih_varijabli(df):
+    varijable = [
+        "WEIGHT2", "HEIGHT3", "HTIN4",
+        "DROCDY3_", "_DRNKWK1",
+        "_STRWT", "_RAWRAKE", "_WT2RAKE",
+        "_CLLCPWT", "_DUALCOR",
+        "_LLCPWT2", "_LLCPWT", "WORKCFS"
+    ]
+
+    rezultati = []
+
+    for naziv in varijable:
+        podaci = pd.to_numeric(
+            df[naziv], errors="coerce"
+        )
+
+        rezultati.append({
+            "Varijabla": naziv,
+            "Broj popunjenih": podaci.count(),
+            "Broj jedinstvenih": podaci.nunique(),
+            "Minimum": podaci.min(),
+            "Maksimum": podaci.max()
+        })
+
+    return pd.DataFrame(rezultati)
+
+
+def priprema_preostalih_numerickih(df):
+    varijable = [
+        "WEIGHT2", "HEIGHT3", "HTIN4",
+        "DROCDY3_", "_DRNKWK1",
+        "_STRWT", "_RAWRAKE", "_WT2RAKE",
+        "_CLLCPWT", "_DUALCOR",
+        "_LLCPWT2", "_LLCPWT"
+    ]
+
+    podaci = df[varijable].apply(
+        pd.to_numeric, errors="coerce"
+    ).copy()
+
+    tezina = podaci["WEIGHT2"].copy()
+    podaci["WEIGHT2"] = np.nan
+
+    funte = tezina.between(50, 776)
+    kilogrami = tezina.between(9023, 9352)
+
+    podaci.loc[funte, "WEIGHT2"] = (
+        tezina.loc[funte] * 0.45359237
+    )
+    podaci.loc[kilogrami, "WEIGHT2"] = (
+        tezina.loc[kilogrami] - 9000
+    )
+
+    visina = podaci["HEIGHT3"].copy()
+    podaci["HEIGHT3"] = np.nan
+
+    stope = visina.between(200, 711)
+    metric = visina.between(9061, 9998)
+
+    broj_stopa = np.floor(visina.loc[stope] / 100)
+    broj_inca = visina.loc[stope] % 100
+
+    cm = (broj_stopa * 12 + broj_inca) * 2.54
+    podaci.loc[stope, "HEIGHT3"] = cm.where(
+        broj_inca < 12
+    )
+
+    podaci.loc[metric, "HEIGHT3"] = (
+        visina.loc[metric] - 9000
+    )
+
+    podaci["HEIGHT3"] = podaci["HEIGHT3"].where(
+        podaci["HEIGHT3"].between(90, 241)
+    )
+
+    
+    podaci["DROCDY3_"] = podaci["DROCDY3_"].replace({
+        900: np.nan
+    }) / 100
+
+
+    podaci["_DRNKWK1"] = podaci["_DRNKWK1"].replace({
+        99900: np.nan
+    }) / 100
+
+    for naziv in ["DROCDY3_", "_DRNKWK1"]:
+        podaci.loc[
+            podaci[naziv].abs() < 0.000001, naziv
+        ] = 0
+
+    return podaci
